@@ -6,27 +6,53 @@ const Footer = () => {
     <footer className="font-inter bg-brand-navy text-white pt-8 pb-3 mt-12">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo & Motto */}
-        <div className="space-y-4 col-span-1">
-          <div className="flex items-center gap-2">
-            <img
-              src="/lovable-uploads/85412dbc-d19c-4f63-8265-29253ad390eb.png"
-              alt="Footer Logo"
-              className="h-11 w-11 bg-white object-contain rounded-md border-2 border-brand-gold"
-            />
-            <span className="font-bold text-lg text-brand-gold">DECISIONS<span className="text-white ml-1">PAAK</span></span>
-          </div>
-          <div className="leading-snug text-[15px]">Innovating.<br />Empowering.<br />Transforming.</div>
-          <div className="mt-3">
-            <div className="flex items-center gap-2">
-              <span role="img" aria-label="Nigeria" className="text-lg">🇳🇬</span>
-              <span className="text-sm">DST Labs, Lagos, Nigeria</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span role="img" aria-label="Qatar" className="text-lg">🇶🇦</span>
-              <span className="text-sm">Floor 8, QFC Towers, Doha, Qatar</span>
-            </div>
-          </div>
-        </div>
+        {/* Logo & Motto */}
+<div className="space-y-4 col-span-1">
+  <div className="flex items-center gap-2">
+    <img
+      src="/decisionLogo.png"
+      alt="DecisionSpaak Technologies Logo"
+      className="h-11 w-11 bg-white object-contain rounded-md border-2 border-brand-gold"
+    />
+    <span className="font-bold text-lg text-brand-gold">
+      DECISION<span className="text-white ml-1">SPAAK</span>
+    </span>
+  </div>
+  <div className="leading-snug text-[15px]">
+    Innovating.<br />Empowering.<br />Transforming.
+  </div>
+  <div className="mt-3 space-y-1">
+  <div className="flex items-center gap-2">
+    <span role="img" aria-label="Nigeria" className="text-lg">🇳🇬</span>
+    <span className="text-sm">DST Labs, Lagos, Nigeria</span>
+  </div>
+  <div className="flex items-center gap-2">
+    <span role="img" aria-label="Qatar" className="text-lg">🇶🇦</span>
+    <span className="text-sm">Floor 8, QFC Towers, Doha, Qatar</span>
+  </div>
+  {/* Contact Emails */}
+  <div className="flex items-center gap-2">
+    <Mail className="w-4 h-4 text-brand-gold" />
+    <a
+      href="mailto:info@decisionspaak.com"
+      className="text-sm hover:text-brand-gold transition"
+    >
+      info@decisionspaak.com
+    </a>
+  </div>
+  <div className="flex items-center gap-2">
+    <Mail className="w-4 h-4 text-brand-gold" />
+    <a
+      href="mailto:support@decisionspaak.com"
+      className="text-sm hover:text-brand-gold transition"
+    >
+      support@decisionspaak.com
+    </a>
+  </div>
+</div>
+
+</div>
+
         {/* Services */}
         <div>
           <div className="font-semibold text-base mb-2 text-brand-gold">Services</div>

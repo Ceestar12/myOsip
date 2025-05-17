@@ -1,65 +1,130 @@
+import React, { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import Logo from "./ui/Logo";
+import { cn } from "@/lib/utils";
 
-import { Menu } from "lucide-react";
-import React, { useState } from "react";
+interface NavItem {
+  label: string;
+  href: string;
+}
 
-const navLinks = [
-  { label: "About", href: "#" },
-  { label: "Service", href: "#" },
-  { label: "Contact", href: "#" },
+const navItems: NavItem[] = [
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#why-partner" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar: React.FC = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith("#")) {
+      if (location.pathname === "/") {
+        document.getElementById(href.substring(1))?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate("/");
+        setTimeout(() => {
+          document.getElementById(href.substring(1))?.scrollIntoView({ behavior: "smooth" });
+        }, 500);
+      }
+    } else {
+      navigate(href);
+    }
+    setIsOpen(false);
+  };
 
   return (
-    <header className="font-inter w-full bg-brand-navy shadow-sm sticky top-0 z-50">
-      <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2 md:py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/lovable-uploads/85412dbc-d19c-4f63-8265-29253ad390eb.png"
-            alt="DecisionSpaak Logo"
-            className="h-8 w-8 rounded-full bg-white object-contain border-2 border-brand-gold"
-          />
-          <span className="font-bold text-lg text-white tracking-wide ml-2">DECISIONS<span className="text-brand-gold">PAAK</span><span className="ml-1 font-normal text-xs text-gray-200 tracking-normal">TECHNOLOGIES</span></span>
+    <header
+      className={cn(
+        "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out border-b border-transparent",
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-md border-gray-200" : "bg-transparent"
+      )}
+    >
+      <div className="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+        <div
+          className="z-30 cursor-pointer flex items-center"
+          onClick={() => {
+            if (location.pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              navigate("/");
+            }
+          }}
+        >
+          <Logo className="w-48 h-auto" />
         </div>
-        {/* Desktop Links */}
-        <ul className="hidden md:flex gap-7 items-center">
-          {navLinks.map((link) => (
-            <li key={link.label}>
-              <a href={link.href} className="text-white font-medium tracking-wide hover:text-brand-gold transition">
-                {link.label}
-              </a>
-            </li>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => handleNavClick(item.href)}
+              className="text-gray-800 hover:text-blue-600 font-medium transition-all duration-200 text-base relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-blue-600 after:transition-all hover:after:w-full"
+            >
+              {item.label}
+            </button>
           ))}
-          <li>
-            <Menu className="text-white w-6 h-6 opacity-0" />
-          </li>
-        </ul>
-        {/* Mobile Hamburger */}
-        <div className="md:hidden">
-          <button
-            className="p-2 text-white rounded hover:bg-brand-gold hover:text-brand-navy transition"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Open menu"
-          >
-            <Menu className="w-7 h-7" />
-          </button>
-          {mobileOpen && (
-            <div className="absolute top-full right-4 mt-3 bg-white shadow-lg rounded-lg w-48 py-2 z-50 border animate-fade-in">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="block px-5 py-3 text-brand-navy hover:text-brand-gold transition"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 rounded-md md:hidden z-30"
+          aria-expanded={isOpen}
+          aria-label="Toggle navigation"
+          aria-controls="mobile-menu"
+        >
+          {isOpen ? (
+            <X className="h-6 w-6 text-gray-900" />
+          ) : (
+            <Menu className="h-6 w-6 text-gray-800" />
           )}
+        </button>
+
+        {/* Mobile Navigation */}
+        <div
+          id="mobile-menu"
+          className={cn(
+            "fixed inset-0 bg-white z-20 transition-opacity duration-300 ease-in-out flex flex-col items-center justify-center h-screen w-full",
+            isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          )}
+        >
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => handleNavClick(item.href)}
+              className="text-gray-900 hover:text-blue-600 text-xl font-medium py-4"
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
-      </nav>
+      </div>
     </header>
   );
 };
