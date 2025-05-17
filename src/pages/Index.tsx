@@ -25,7 +25,7 @@ const Index = () => {
               One-Shot Innovation Program <span className="text-brand-gold">(OSIP)</span>
             </div>
             <hr className="border-brand-navy/40 mb-3" />
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-navy mb-3 leading-tight max-w-2xl">
+            <h1 className="text-2xl  md:text-4xl font-bold text-brand-navy mb-3 leading-tight max-w-2xl">
               Bring Your Tech Ideas to Life with the One-Shot Innovation Program (OSIP)
             </h1>
           </div>
@@ -60,7 +60,7 @@ const Index = () => {
                 Each OSIP cycle selects 10 promising innovators and pairs them with skilled tech talents, developers, designers, analysts, and product managers to bring their ideas to life.
               </motion.div>
             </div>
-            <div className="flex-1 hidden md:block">
+            <div className="flex-1 hidden  md:block">
               <div className="rounded-xl bg-gray-100 h-32 w-full shadow-inner border border-gray-200"></div>
             </div>
           </section>
@@ -114,10 +114,7 @@ const Index = () => {
               <div>
                 <span className="font-bold">Tech Schools</span> – Empower your students, showcase your institution, and become an OSIP Partner.
               </div>
-              <div>
-                <span className="font-bold">Contact</span> – Us at{" "}
-                <a href="mailto:imelda@decisionspaak.com" className="text-brand-gold hover:underline">imelda@decisionspaak.com</a>
-              </div>
+             
               <div>
                 <span className="font-bold">Questions?</span> – Reach out anytime:{" "}
                 <a href="mailto:osip@decisionspaak.com" className="text-brand-gold hover:underline">osip@decisionspaak.com</a>

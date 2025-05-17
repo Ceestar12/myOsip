@@ -15,7 +15,7 @@ const Footer = () => {
       className="h-11 w-11 bg-white object-contain rounded-md border-2 border-brand-gold"
     />
     <span className="font-bold text-lg text-brand-gold">
-      DECISION<span className="text-white ml-1">SPAAK</span>
+      DECISIONSPAAK <span className="text-white ml-1">TECHNOLOGIES</span>
     </span>
   </div>
   <div className="leading-snug text-[15px]">
@@ -43,10 +43,10 @@ const Footer = () => {
   <div className="flex items-center gap-2">
     <Mail className="w-4 h-4 text-brand-gold" />
     <a
-      href="mailto:support@decisionspaak.com"
+      href="mailto:osip@decisionspaak.com"
       className="text-sm hover:text-brand-gold transition"
     >
-      support@decisionspaak.com
+      ospi@decisionspaak.com
     </a>
   </div>
 </div>
