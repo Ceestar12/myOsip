@@ -46,7 +46,7 @@ const Footer = () => {
       href="mailto:osip@decisionspaak.com"
       className="text-sm hover:text-brand-gold transition"
     >
-      ospi@decisionspaak.com
+      osip@decisionspaak.com
     </a>
   </div>
 </div>
