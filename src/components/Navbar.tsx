@@ -60,31 +60,30 @@ const Navbar: React.FC = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out border-b border-transparent",
-        scrolled ? "bg-white/95 backdrop-blur-md shadow-md border-gray-200" : "bg-transparent"
+        "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out",
+        scrolled
+          ? "bg-white/80 backdrop-blur-md shadow-md border-b border-gray-200"
+          : "bg-gradient-to-b from-white/70 to-transparent backdrop-blur-sm"
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
-        <div
+        {/* Logo */}
+        <a
+          href="https://decisionspaak.com/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="z-30 cursor-pointer flex items-center"
-          onClick={() => {
-            if (location.pathname === "/") {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            } else {
-              navigate("/");
-            }
-          }}
         >
-          <Logo className="w-48 h-auto" />
-        </div>
+          <Logo className="w-48 h-auto hover:opacity-80 transition-opacity duration-200" />
+        </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
             <button
               key={item.label}
               onClick={() => handleNavClick(item.href)}
-              className="text-gray-800 hover:text-blue-600 font-medium transition-all duration-200 text-base relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-blue-600 after:transition-all hover:after:w-full"
+              className="text-brand-navy hover:text-brand-gold font-medium transition-all duration-300 text-base relative after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:w-0 after:bg-brand-gold after:transition-all hover:after:w-full"
             >
               {item.label}
             </button>
@@ -94,7 +93,7 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-md md:hidden z-30"
+          className="p-2 rounded-md md:hidden z-30 hover:bg-gray-100 transition-colors"
           aria-expanded={isOpen}
           aria-label="Toggle navigation"
           aria-controls="mobile-menu"
@@ -110,15 +109,15 @@ const Navbar: React.FC = () => {
         <div
           id="mobile-menu"
           className={cn(
-            "fixed inset-0 bg-white z-20 transition-opacity duration-300 ease-in-out flex flex-col items-center justify-center h-screen w-full",
-            isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            "fixed inset-0 bg-white/95 backdrop-blur-sm z-20 transform transition-transform duration-300 ease-in-out flex flex-col items-center justify-center h-screen w-full",
+            isOpen ? "translate-x-0" : "translate-x-full"
           )}
         >
           {navItems.map((item) => (
             <button
               key={item.label}
               onClick={() => handleNavClick(item.href)}
-              className="text-gray-900 hover:text-blue-600 text-xl font-medium py-4"
+              className="text-gray-900 hover:text-brand-gold text-xl font-semibold py-4 transition-colors"
             >
               {item.label}
             </button>

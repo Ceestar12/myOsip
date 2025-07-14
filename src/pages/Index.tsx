@@ -4,6 +4,8 @@ import '@fontsource/urbanist'; // Defaults to 400
 import '@fontsource/urbanist/600.css'; // Optional bold weight
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import Countdown from "react-countdown";
+import { Typewriter } from 'react-simple-typewriter';
 
 const points = [
   "Real-world experience for your students/alumni",
@@ -21,17 +23,63 @@ const Index = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header Block */}
           <div className="mb-1">
-            <div className="text-base font-semibold text-brand-navy uppercase tracking-wider mb-2">
-              One-Shot Innovation Program <span className="text-brand-gold">(OSIP)</span>
-            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="text-2xl md:text-3xl font-bold text-brand-gold uppercase tracking-wider mb-4"
+            >
+              <Typewriter
+                words={["One-Shot Innovation Program (OSIP)"]}
+                loop={0}
+                cursor={false}
+                typeSpeed={60}
+                deleteSpeed={40}
+                delaySpeed={1500}
+              />
+            </motion.div>
             <hr className="border-brand-navy/40 mb-3" />
-            <h1 className="text-2xl md:text-4xl font-bold text-brand-navy mb-3 leading-tight max-w-2xl">
-              Bring Your Tech Ideas to Life with the One-Shot Innovation Program (OSIP)
-            </h1>
           </div>
 
+          {/* Countdown Timer */}
+          {/**
+          <section className="mb-10 p-6 rounded-xl bg-gradient-to-br from-yellow-50 to-brand-gold/10 shadow-inner border border-brand-gold/20">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-brand-navy mb-2">⏳ Countdown to Next OSIP Cohort</h2>
+              <p className="text-sm text-brand-navy/80 mb-4">We're kicking off on <strong>August 1, 2025</strong>. Mark your calendar!</p>
+              <Countdown
+                date={new Date("2025-08-01T00:00:00")}
+                renderer={({ days, hours, minutes, seconds }) => (
+                  <div className="flex justify-center gap-4 text-xl font-semibold text-brand-navy">
+                    <div className="bg-white px-4 py-2 rounded shadow border w-20">
+                      <div className="text-2xl font-bold">{days}</div>
+                      <div className="text-xs">Days</div>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded shadow border w-20">
+                      <div className="text-2xl font-bold">{hours}</div>
+                      <div className="text-xs">Hours</div>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded shadow border w-20">
+                      <div className="text-2xl font-bold">{minutes}</div>
+                      <div className="text-xs">Minutes</div>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded shadow border w-20">
+                      <div className="text-2xl font-bold">{seconds}</div>
+                      <div className="text-xs">Seconds</div>
+                    </div>
+                  </div>
+                )}
+              />
+            </div>
+          </section>
+          */}
+
+          <h1 className="text-2xl md:text-4xl font-bold text-brand-navy mb-3 leading-tight max-w-2xl">
+            Bring Your Tech Ideas to Life with the One-Shot Innovation Program (OSIP)
+          </h1>
+
           {/* Problem Statement */}
-          <section className="mb-7">
+          <section className="mb-6">
             <div className="text-brand-navy text-[1.07rem] leading-relaxed">
               Every day, brilliant ideas are born, ideas that could solve real problems and improve lives. Yet, most of them never make it past the idea stage. Why?
               <ul className="list-disc pl-6 my-2 space-y-1">
@@ -44,8 +92,8 @@ const Index = () => {
           </section>
 
           {/* What is OSIP */}
-          <section id="about" className="mb-8 flex flex-col md:flex-row gap-6 md:items-center scroll-mt-20">
-            <div className="flex-1">
+          <section id="about" className="mb-8 flex flex-col md:flex-row gap-6 md:items-stretch scroll-mt-20">
+            <div className="flex-1 flex flex-col justify-center">
               <div className="text-xl font-semibold text-brand-gold mb-1">
                 What is OSIP?
               </div>
@@ -54,43 +102,56 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="rounded-xl bg-white shadow-md py-5 px-6 text-brand-navy/95 text-[1.06rem] leading-relaxed border border-gray-200 max-w-xl"
+                className="h-[300px] md:h-[300px] rounded-xl bg-white shadow-md py-6 px-7 text-brand-navy/95 text-[1.05rem] leading-relaxed border border-gray-200 transition-transform duration-500 hover:scale-[1.03] hover:shadow-xl hover:bg-yellow-50/20"
               >
                 The One-Shot Innovation Program (OSIP) is a 6–8 week accelerator-style initiative designed to bring innovators and tech talents together to co-develop real products from scratch.
                 <br /><br />
                 Each OSIP cycle selects 10 promising innovators and pairs them with skilled tech talents, developers, designers, analysts, and product managers to bring their ideas to life.
               </motion.div>
             </div>
-            <div className="flex-1 block">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              viewport={{ once: true }}
+              className="flex-1 h-[300px] flex items-center"
+            >
               <img
                 src="/Gemini_Generated_Image_96iluz96iluz96il (1).webp"
                 alt="Collaborative team working on innovation"
-                className="rounded-xl border border-gray-200 shadow-md w-full h-auto object-cover max-h-[280px]"
+                className="h-full w-full rounded-xl border border-gray-200 shadow-lg object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
               />
-            </div>
+            </motion.div>
           </section>
 
           {/* Why Partner with Us */}
-          <section id="why-partner" className="mb-8 flex flex-col md:flex-row gap-6 md:items-center scroll-mt-20">
-            <div className="flex-1 md:order-first order-last">
+          <section id="why-partner" className="mb-8 flex flex-col md:flex-row gap-6 md:items-stretch scroll-mt-20">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              viewport={{ once: true }}
+              className="flex-1 h-[360px] flex items-center md:order-first order-last"
+            >
               <img
                 src="/Gemini_Generated_Image_atvpktatvpktatvp1.webp"
                 alt="Collaborative team working on innovation"
-                className="rounded-xl border border-gray-200 shadow-md w-full h-auto object-cover max-h-[280px]"
+                className="h-full w-full rounded-xl border border-gray-200 shadow-lg object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
               />
-            </div>
-            <div className="flex-1">
-              <div className="text-xl font-semibold  text-brand-gold mb-1">
+            </motion.div>
+            <div className="flex-1 flex flex-col justify-center">
+              <div className="text-xl font-semibold text-brand-gold mb-1">
                 Why Partner with Us?
-                <span className="block w-16 h-[2px] rounded bg-brand-gold mt-2 mb-4"></span>
+                <span className="block w-16 h-[2px] rounded bg-brand-gold mt-2 mb-3"></span>
               </div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
                 viewport={{ once: true }}
+                className="h-auto md:h-auto bg-white rounded-xl shadow-md border border-gray-200 p-6 hover:shadow-xl hover:bg-yellow-50/20 transition-transform duration-500"
               >
-                <div className="text-brand-navy text-[1.07rem] leading-relaxed mb-1">
+                <div className="text-brand-navy text-[1.05rem] leading-relaxed mb-3">
                   As a tech training institution, you train the talents. OSIP gives them a launchpad to apply what they've learned in real-world, impact-driven projects.
                 </div>
                 <div>
